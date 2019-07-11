@@ -1,6 +1,13 @@
 <h3>Products</h3>
+
+<input type="text" placeholder="Search" (input)="onSearchChange($event)">
+
+<p>Filtered Text: '{{search}}'</p>
 <ol>
     <li *ngFor="let product of products">
         <a [routerLink]="['/product', product.id]">{{product.name}}</a>
-    </li>
+    </li>    
 </ol>
+<ul>
+    <li *ngIf="products.length === 0">Product not found</li>
+</ul>

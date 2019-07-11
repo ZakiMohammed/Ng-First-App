@@ -8,14 +8,22 @@ import { Product, ProductData } from 'src/app/models/product';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[] = [];
+  products: Product[] = [];  
+  productData: ProductData;
+  search: string = '';
 
   constructor() { 
-    let productData = new ProductData();
-    this.products = productData.getProducts();
+    this.productData = new ProductData();
+    this.products = this.productData.getProducts();
   }
 
   ngOnInit() {
+  }
+
+  onSearchChange($event: any) {
+    let value = $event.target.value;
+    this.search = value;
+    this.products = this.productData.searchProducts(this.search);
   }
 
 }
