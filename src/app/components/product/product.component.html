@@ -1,0 +1,21 @@
+<h3>Products</h3>
+<div *ngFor="let product of products">
+    <b>{{product.name}}</b>
+
+    <!-- *ngIf not rendered -->
+    <span *ngIf="!product.inStock" class="color-red">
+        (Not in stock)
+    </span>
+    
+    <!-- [hidden] render but hidden -->
+    <!--         
+        <span [hidden]="product.inStock" class="color-red">
+            (Not in stock)
+        </span>
+     -->
+    <br>
+    {{product.description}}<br>
+    <!-- Price: <i class="{{ product.price > 3000 ? 'color-blue' : '' }}">{{product.price}}</i> -->
+    Price: <i [ngClass]="{ 'color-blue' : product.price >= 3000 }">{{product.price | currency}}</i>    
+    <br><br>
+</div>
