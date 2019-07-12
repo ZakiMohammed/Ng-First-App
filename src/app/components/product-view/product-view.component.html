@@ -1,10 +1,12 @@
-<h3>
-    {{product.name}}
-    <span *ngIf="!product.inStock" class="color-red">
-        (Not in stock)
-    </span>
-</h3>
-Price: <i [ngClass]="{ 'color-blue' : product.price >= 3000 }">{{product.price | currency}}</i>
-
-<div [innerHTML]="product.description"></div>
-<br>
+<ng-container *ngIf="product">
+    <h3>
+        {{product.name}}
+        <span *ngIf="!product.inStock" class="color-red">
+            (Not in stock)
+        </span>
+    </h3>
+    Price: <i [ngClass]="{ 'color-blue' : product.price >= 3000 }">{{product.price | currency}}</i>
+    
+    <div [innerHTML]="product.description"></div>
+    <br>
+</ng-container>

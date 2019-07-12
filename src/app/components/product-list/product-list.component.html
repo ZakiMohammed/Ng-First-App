@@ -1,6 +1,8 @@
 <h3>Products</h3>
 
-<input type="text" placeholder="Search" (input)="onSearchChange($event)">
+<!-- <input type="text" placeholder="Search" (input)="onSearchChange($event)"> -->
+<input type="text" placeholder="Search" [(ngModel)]="search">
+<span [hidden]="!loader">&nbsp;Loading please wait...</span>
 
 <p>Filtered Text: '{{search}}'</p>
 <ol>
@@ -9,5 +11,5 @@
     </li>    
 </ol>
 <ul>
-    <li *ngIf="products.length === 0">Product not found</li>
+    <li *ngIf="products.length === 0 && !loader">Product not found</li>
 </ul>
