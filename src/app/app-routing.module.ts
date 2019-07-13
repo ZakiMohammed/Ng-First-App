@@ -8,13 +8,15 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductViewComponent } from './components/product-view/product-view.component';
+import { PostListComponent } from './components/post-list/post-list.component';
+import { PostViewComponent } from './components/post-view/post-view.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'product', component: ProductListComponent },
-  { path: 'product/:id', component: ProductViewComponent },
+  { path: 'posts', component: PostListComponent },
+  { path: 'posts/:id', component: PostViewComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];

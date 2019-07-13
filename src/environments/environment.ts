@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://172.16.3.141:8081/_study/first-app/api/'
+  apiUrl: 'http://172.16.3.141:8081/_study/first-app/api/',
+  fakeApiUrl: 'https://jsonplaceholder.typicode.com/',
 };
 
 /*
