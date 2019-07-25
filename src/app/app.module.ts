@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,6 +18,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductViewComponent } from './components/product-view/product-view.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { PostViewComponent } from './components/post-view/post-view.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [    
@@ -29,12 +32,13 @@ import { PostViewComponent } from './components/post-view/post-view.component';
     FooterComponent, 
     ProductComponent, 
     ProductListComponent, 
-    ProductViewComponent, PostListComponent, PostViewComponent
+    ProductViewComponent, PostListComponent, PostViewComponent, LoginComponent, ProfileComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],

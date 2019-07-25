@@ -1,0 +1,34 @@
+<h3>Login to First App</h3>
+
+<form 
+    novalidate
+    [formGroup]="frm"
+    (ngSubmit)="onSubmit()">
+
+    <div>
+        <label for="userName">User Name: </label>
+        <input  type="text"
+            name="username"
+            placeholder="Enter user name"
+            required
+            formControlName="userName">
+        <span class="color-red" *ngIf="(f.userName.touched || f.userName.dirty) && f.userName.errors?.required">
+            &nbsp;This field is required
+        </span>
+    </div>
+    <div>
+        <label for="email">Email: </label>
+        <input  type="email"
+            name="email"
+            placeholder="Enter email"
+            required
+            formControlName="email">   
+        <span class="color-red" *ngIf="(f.email.touched || f.email.dirty) && f.email.errors?.required">
+            &nbsp;This field is required
+        </span>
+    </div>
+     
+    <button type="submit" [disabled]="!frm.valid">Login</button>
+    <span *ngIf="loader">&nbsp;Loading...</span><br>
+    <div class="color-red">{{ message }}</div>    
+</form>

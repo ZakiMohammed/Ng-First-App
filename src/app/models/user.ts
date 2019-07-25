@@ -7,4 +7,17 @@ export class User {
     phone: string;
     website: string;
     company: any;
+
+    get fullAddress() {
+        return  this.address.street + ', ' + 
+                this.address.suite + ', ' +
+                this.address.city + ', ' +
+                this.address.zipcode;
+    }
+
+    get fullCompany() {
+        return  this.company.name + ', ' + 
+                this.company.catchPhrase + ', ' +
+                this.company.bs;
+    }
 }
