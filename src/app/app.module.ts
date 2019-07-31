@@ -20,6 +20,7 @@ import { PostListComponent } from './components/post-list/post-list.component';
 import { PostViewComponent } from './components/post-view/post-view.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { PostPageComponent } from './components/post-page/post-page.component';
 
 @NgModule({
   declarations: [    
@@ -32,7 +33,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     FooterComponent, 
     ProductComponent, 
     ProductListComponent, 
-    ProductViewComponent, PostListComponent, PostViewComponent, LoginComponent, ProfileComponent
+    ProductViewComponent, PostListComponent, PostViewComponent, LoginComponent, ProfileComponent, PostPageComponent
   ],
   imports: [
     BrowserModule,
