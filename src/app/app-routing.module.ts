@@ -24,6 +24,8 @@ const routes: Routes = [
   { path: 'clients', component: ClientListComponent },
   { path: 'posts', component: PostPageComponent },
   { path: 'posts/:id', component: PostViewComponent },
+  { path: 'product', component: ProductListComponent },
+  { path: 'product/:id', component: ProductViewComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -1,0 +1,6 @@
+<span (click)="onRatingClick($event)">[{{overAllRating}}]</span>
+<ul style="display: none;">
+    <li *ngFor="let rating of ratings">
+        {{ rating.title }}: {{ rating.rate }}
+    </li>
+</ul>

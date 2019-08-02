@@ -5,11 +5,15 @@
 <span [hidden]="!loader">&nbsp;Loading please wait...</span>
 
 <p>Filtered Text: '{{search}}'</p>
-<ol>
-    <li *ngFor="let product of products">
-        <a [routerLink]="['/product', product.id]">{{product.name}}</a>
-    </li>    
-</ol>
-<ul>
-    <li *ngIf="products.length === 0 && !loader">Product not found</li>
-</ul>
+<div>
+    <div *ngFor="let product of products">
+        <a [routerLink]="['/product', product.id]">{{product.name}}</a>&nbsp;
+        <app-product-rate 
+            [overAllRating]="product.overAllRating" 
+            [ratings]="product.ratings"
+            (ratingClicked)='onRatingClick($event)'></app-product-rate>
+    </div>    
+</div>
+<div>
+    <div *ngIf="products.length === 0 && !loader">Product not found</div>
+</div>

@@ -23,6 +23,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { PostPageComponent } from './components/post-page/post-page.component';
 import { ClientListComponent } from './components/client-list/client-list.component';
 import { PagerComponent } from './components/child/pager/pager.component';
+import { ProductRateComponent } from './components/child/product-rate/product-rate.component';
 
 @NgModule({
   declarations: [    
@@ -42,7 +43,7 @@ import { PagerComponent } from './components/child/pager/pager.component';
     ProfileComponent, 
     PostPageComponent, 
     ClientListComponent, 
-    PagerComponent
+    PagerComponent, ProductRateComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

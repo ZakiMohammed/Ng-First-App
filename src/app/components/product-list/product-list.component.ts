@@ -11,7 +11,7 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];  
   productData: ProductData;
-  loader: boolean = true;
+  loader: boolean = false;
   _search: string = '';
 
   get search() : string {
@@ -19,24 +19,24 @@ export class ProductListComponent implements OnInit {
   }
   set search(value : string) {
     this._search = value;
-    // this.products = this.productData.searchProducts(this._search);
-    this.loader = true;
-    this.productService.searchProducts(this._search).subscribe(response => {
-      this.products = response;
-      this.loader = false;
-    });
+    this.products = this.productData.searchProducts(this._search);
+    // this.loader = true;
+    // this.productService.searchProducts(this._search).subscribe(response => {
+    //   this.products = response;
+    //   this.loader = false;
+    // });
   }
   
   constructor(private productService: ProductService) { 
-    // this.productData = new ProductData();
-    // this.products = this.productData.getProducts();
+    this.productData = new ProductData();
+    this.products = this.productData.getProducts();
   }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(response => {
-      this.products = response;
-      this.loader = false;
-    });
+    // this.productService.getProducts().subscribe(response => {
+    //   this.products = response;
+    //   this.loader = false;
+    // });
   }
 
   // onSearchChange($event: any) {
@@ -44,5 +44,13 @@ export class ProductListComponent implements OnInit {
   //   this.search = value;
   //   this.products = this.productData.searchProducts(this._search);
   // }
+
+  onRatingClick(nextSibling: any) {       
+    if (nextSibling.style.display === 'none') {
+      nextSibling.style.display = 'block';
+    } else {
+      nextSibling.style.display = 'none';
+    }
+  }
 
 }
