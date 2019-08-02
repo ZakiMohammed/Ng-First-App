@@ -5,7 +5,12 @@
             (Not in stock)
         </span>
     </h3>
-    Price: <i [ngClass]="{ 'color-blue' : product.price >= 3000 }">{{product.price | currency}}</i>
+    Price: <i [ngClass]="{ 'color-blue' : product.price >= 3000 }">{{product.price | currency}}</i><br>
+    Rating: 
+    <app-product-rate 
+        [overAllRating]="product.overAllRating" 
+        [ratings]="product.ratings"
+        (ratingClicked)='onRatingClick($event)'></app-product-rate>
     
     <div [innerHTML]="product.description"></div>
     <br>
