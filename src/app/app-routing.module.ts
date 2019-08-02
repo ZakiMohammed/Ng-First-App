@@ -15,11 +15,13 @@ import { AuthGuard } from './guards/auth.guard';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
 import { PostPageComponent } from './components/post-page/post-page.component';
+import { ClientListComponent } from './components/client-list/client-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'clients', component: ClientListComponent },
   { path: 'posts', component: PostPageComponent },
   { path: 'posts/:id', component: PostViewComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },

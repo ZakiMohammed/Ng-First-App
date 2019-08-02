@@ -1,22 +1,22 @@
-export class Pagination{
-    numbers:number[];
+export class Pagination {
+    numbers: number[];
     numbersCount: number;
-    index:number;
+    index: number;
     count: number;
     totalCount: number;
     filterCount: number;
-    currentPage: number;      
-    list:any;    
-    searchText:string;
-    orderBy:string;
-    orderDir:string;
-    nextDotsVisible:boolean;
-    prevDotsVisible:boolean;
-    nextVisible:boolean;
-    prevVisible:boolean;
-    firstVisible:boolean;
-    lastVisible:boolean;
-  
+    currentPage: number;
+    list: any;
+    searchText: string;
+    orderBy: string;
+    orderDir: string;
+    nextDotsVisible: boolean;
+    prevDotsVisible: boolean;
+    nextVisible: boolean;
+    prevVisible: boolean;
+    firstVisible: boolean;
+    lastVisible: boolean;
+
     public nextCallBack: { (): void; };
     public previousCallBack: { (): void; };
     public firstCallBack: { (): void; };
@@ -24,13 +24,13 @@ export class Pagination{
     public currentCallBack: { (): void; };
     public searchCallBack: { (): void; };
     public orderCallBack: { (by): void; };
-  
-    constructor(numbers:number[], index:number, count:number, list:any, searchText:string, orderBy:string, orderDir:string, numbersCount: number = 5, currentPage: number = 1 ){
+
+    constructor(numbers: number[], index: number, count: number, list: any, searchText: string, orderBy: string, orderDir: string, numbersCount: number = 5, currentPage: number = 1) {
         this.numbers = numbers;
         this.index = index;
         this.count = count;
-        this.list = list;    
-        this.searchText = searchText;    
+        this.list = list;
+        this.searchText = searchText;
         this.orderBy = orderBy;
         this.orderDir = orderDir;
         this.numbersCount = numbersCount;
@@ -42,79 +42,79 @@ export class Pagination{
         this.firstVisible = true;
         this.lastVisible = true;
     }
-  
-    next(){        
-        if(this.index + this.count < this.filterCount){            
+
+    next() {
+        if (this.index + this.count < this.filterCount) {
             this.index += this.count;
             this.currentPage++;
             this.nextCallBack();
         }
     }
-  
-    previous(){        
-        if(this.index - this.count >= 0){            
+
+    previous() {
+        if (this.index - this.count >= 0) {
             this.index -= this.count;
             this.currentPage--;
             this.previousCallBack();
         }
     }
-  
-    first(){        
+
+    first() {
         this.index = 0;
         this.currentPage = 1;
         this.firstCallBack();
     }
-  
-    last(){        
-        this.index = (Math.ceil(this.filterCount / this.count) * this.count) - this.count;        
+
+    last() {
+        this.index = (Math.ceil(this.filterCount / this.count) * this.count) - this.count;
         this.currentPage = Math.ceil(this.filterCount / this.count);
         this.lastCallBack();
     }
-  
-    current(page:number){
+
+    current(page: number) {
         this.index = this.count * (page - 1);
         this.currentPage = page;
-        this.currentCallBack();    
+        this.currentCallBack();
     }
-  
-    nextDots(){
+
+    nextDots() {
         this.adjustNumbers(true);
     }
-  
-    previousDots(){
+
+    previousDots() {
         this.adjustNumbers(false, true);
     }
-  
-    search(){
+
+    search() {
         this.index = 0;
         this.searchCallBack();
     }
-  
-    order(by:string){
+
+    order(by: string) {
         this.orderBy = by;
         this.orderDir = this.orderDir == 'ASC' ? 'DESC' : 'ASC'
         this.orderCallBack(by);
     }
-  
-    adjustNumbers(nextDots:boolean = false, prevDots:boolean = false){
-  
-      if (this.filterCount === 0){
-          this.nextVisible = false;
-          this.prevVisible = false;
-          this.nextDotsVisible = false;
-          this.prevDotsVisible = false;
-          this.firstVisible = false;
-          this.lastVisible = false;
-          this.numbers = [];
-          return;
-      }
-  
+
+    adjustNumbers(nextDots: boolean = false, prevDots: boolean = false) {
+
+        if (this.filterCount === 0) {
+            this.nextVisible = false;
+            this.prevVisible = false;
+            this.nextDotsVisible = false;
+            this.prevDotsVisible = false;
+            this.firstVisible = false;
+            this.lastVisible = false;
+            this.numbers = [];
+            return;
+        }
+
         let limit = 0;
         let start = 0;
         let end = 0;
         let mod = this.currentPage % this.numbersCount;
-        let lastPage = Math.ceil(this.filterCount / this.count);        
-  
+        let lastPage = Math.ceil(this.filterCount / this.count);
+
         if (mod > 0) {
             limit = this.currentPage + (this.numbersCount - mod);
         }
@@ -122,10 +122,10 @@ export class Pagination{
             let prevPage = this.currentPage - 1;
             limit = prevPage + (this.numbersCount - (prevPage % this.numbersCount));
         }
-  
+
         start = (limit - this.numbersCount) + 1;
         end = (start + this.numbersCount) - 1;
-  
+
         if (nextDots) {
             start = this.numbers[0] + this.numbersCount;
             end = this.numbers[this.numbers.length - 1] + this.numbersCount;
@@ -134,7 +134,7 @@ export class Pagination{
             start = this.numbers[0] - this.numbersCount;
             end = start + (this.numbersCount - 1);
         }
-  
+
         if (end >= lastPage) {
             end = lastPage;
             this.nextDotsVisible = false;
@@ -142,14 +142,27 @@ export class Pagination{
         else {
             this.nextDotsVisible = true;
         }
-  
+
         this.prevDotsVisible = start !== 1;
         this.prevVisible = this.currentPage !== 1;
         this.nextVisible = this.currentPage !== lastPage;
-  
+
         this.numbers = [];
         for (let i = start; i <= end; i++) {
             this.numbers.push(i);
         }
     }
-  }
+}
+export class PagerOption {
+    url: string;
+    orderBy: string;
+    orderDir: string;
+    size: number;
+    numbersCount: number;
+    visible: {
+        search: boolean,
+        order: boolean,
+        pagination: boolean,
+        status: boolean
+    };
+}

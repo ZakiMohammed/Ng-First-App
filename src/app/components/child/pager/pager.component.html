@@ -1,0 +1,73 @@
+<div>
+    <div *ngIf="pagerOption.visible.search">
+        Search: <input type="text" placeholder="Search..." [(ngModel)]="pagination.searchText" (input)="pagination.search()">
+    </div>    
+    <div *ngIf="pagerOption.visible.order">
+        Order: <button type="button" (click)="pagination.order('title')">{{pagination.orderDir}}</button>
+    </div>
+</div>
+
+<ul>
+    <li *ngFor="let post of pagination.list; let last = last">
+        <a [routerLink]="['/posts', post.id]">{{post.title}}</a>
+    </li>
+</ul>
+
+<div *ngIf="pagerOption.visible.status && pagination.list.length">
+    Showing 
+    {{ pagination.index + 1 }} to 
+    {{ (pagination.index + pagination.count) > pagination.filterCount ? 
+            pagination.filterCount : 
+            (pagination.index + pagination.count)
+    }} of 
+    {{ pagination.filterCount }} 
+    {{ pagination.filterCount == pagination.totalCount ? '' : '(filtered from ' + pagination.totalCount + ')' }}
+    <br><br>
+</div>
+
+<div *ngIf="pagerOption.visible.pagination && pagination.list.length">
+
+    <span [hidden]="!pagination.firstVisible">
+        <button class="page-spannk" type="button" aria-label="Previous" (click)="pagination.first()">
+            <<
+        </button>
+    </span>
+    <span [hidden]="!pagination.prevVisible">
+        <button class="page-spannk" type="button" aria-label="Previous" (click)="pagination.previous()">
+            <
+        </button>
+    </span>
+    <span [hidden]="!pagination.prevDotsVisible">
+        <button class="page-spannk" type="button" aria-label="..." (click)="pagination.previousDots()">
+            ...
+        </button>
+    </span>
+
+    <ng-container *ngFor="let page of pagination.numbers">
+        <span [class.active]="pagination.currentPage == page">
+            <button type="button" class="page-spannk" (click)="pagination.current(page)">
+                {{ page }}
+            </button>
+        </span>
+    </ng-container>
+
+    <span [hidden]="!pagination.nextDotsVisible">
+        <button class="page-spannk" type="button" aria-label="..." (click)="pagination.nextDots()">
+            ...
+        </button>
+    </span>
+    <span [hidden]="!pagination.nextVisible">
+        <button class="page-spannk" type="button" aria-label="Next" (click)="pagination.next()">
+            >
+        </button>
+    </span>
+    <span [hidden]="!pagination.lastVisible">
+        <button class="page-spannk" type="button" aria-label="Next" (click)="pagination.last()">
+            >>
+        </button>
+    </span>
+    <br><br>
+</div>
+
+<span *ngIf="pagination.list.length === 0 && !loader">Post not found</span>
+<span [hidden]="!loader">Loading please wait...</span>
