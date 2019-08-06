@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/services/shared.service';
+import { Auth } from 'src/app/models/auth';
 
 declare var window: any;
 
@@ -12,14 +14,17 @@ declare var window: any;
 export class HeaderComponent implements OnInit {
 
   isLoggedIn: boolean = false;
+  auth: Auth = null;
 
   constructor(
     private authService: AuthService,
+    private sharedService: SharedService,
     private route: Router
   ) { }
 
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn();
+    this.auth = this.authService.getData();
   }
 
   onLogoutClick($event: any) {

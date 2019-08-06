@@ -10,5 +10,8 @@
     <li *ngIf="isLoggedIn"><a [routerLink]="['/profile']">Profile</a></li>
     <li *ngIf="isLoggedIn"><a [routerLink]="['/users']">Users</a></li>
 </ul>
-<button *ngIf="isLoggedIn" type="button" (click)="onLogoutClick($event)">Logout</button>
+<div *ngIf="isLoggedIn">
+    <span *ngIf="auth">Welcome {{ auth.user.name }} </span>
+    <button type="button" (click)="onLogoutClick($event)">Logout</button>
+</div>
 <hr>
