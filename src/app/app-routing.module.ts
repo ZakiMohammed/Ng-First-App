@@ -16,6 +16,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
 import { PostPageComponent } from './components/post-page/post-page.component';
 import { ClientListComponent } from './components/client-list/client-list.component';
+import { UserViewComponent } from './components/user-view/user-view.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'posts/:id', component: PostViewComponent },
   { path: 'product', component: ProductListComponent },
   { path: 'product/:id', component: ProductViewComponent },
+  { path: 'users', component: UserViewComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -1,0 +1,13 @@
+<button type="button" (click)="hideSearchBox = !hideSearchBox;">
+    {{ hideSearchBox ? '👇' : '👆' }} {{ item == null ? 'Select' : getText(item) }}
+</button>
+<fieldset [hidden]="hideSearchBox">
+    <input type="text" [(ngModel)]="searchText" placeholder="🔍 Search">
+    <br>
+    <ng-container *ngFor="let item of listFiltered">
+        <span (click)="onItemClick($event, item)">
+            {{ getText(item) }}
+        </span><br>
+    </ng-container>
+    <span [hidden]="listFiltered.length">No item found</span>
+</fieldset>

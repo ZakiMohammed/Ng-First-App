@@ -24,6 +24,8 @@ import { PostPageComponent } from './components/post-page/post-page.component';
 import { ClientListComponent } from './components/client-list/client-list.component';
 import { PagerComponent } from './components/child/pager/pager.component';
 import { ProductRateComponent } from './components/child/product-rate/product-rate.component';
+import { UserViewComponent } from './components/user-view/user-view.component';
+import { SearchComponent } from './components/child/search/search.component';
 
 @NgModule({
   declarations: [    
@@ -43,7 +45,7 @@ import { ProductRateComponent } from './components/child/product-rate/product-ra
     ProfileComponent, 
     PostPageComponent, 
     ClientListComponent, 
-    PagerComponent, ProductRateComponent
+    PagerComponent, ProductRateComponent, UserViewComponent, SearchComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -8,6 +8,7 @@
     <li><a [routerLink]="['/contact']">Contact</a></li>
     <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']">Login</a></li>
     <li *ngIf="isLoggedIn"><a [routerLink]="['/profile']">Profile</a></li>
+    <li *ngIf="isLoggedIn"><a [routerLink]="['/users']">Users</a></li>
 </ul>
 <button *ngIf="isLoggedIn" type="button" (click)="onLogoutClick($event)">Logout</button>
 <hr>

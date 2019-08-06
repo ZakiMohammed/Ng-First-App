@@ -1,0 +1,8 @@
+<app-search [list]="list" (itemClick)="onItemClick($event)"></app-search>
+<div *ngIf="item">
+    {{ item.email }}<br>
+    {{ item.phone }}<br>
+    {{ item.website }}<br>
+    {{ item.fullAddress }}<br>
+    {{ item.fullCompany }}<br>
+</div>
