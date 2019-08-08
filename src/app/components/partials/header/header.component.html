@@ -4,14 +4,18 @@
     <li><a [routerLink]="['/about']">About</a></li>
     <li><a [routerLink]="['/clients']">Clients</a></li>
     <li><a [routerLink]="['/posts']">Posts</a></li>
-    <li><a [routerLink]="['/product']">Products</a></li>
     <li><a [routerLink]="['/contact']">Contact</a></li>
     <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']">Login</a></li>
+    <li *ngIf="isLoggedIn"><a [routerLink]="['/products']">Products</a></li>
+    <li *ngIf="isLoggedIn"><a [routerLink]="['/products/type']">Types</a></li>
     <li *ngIf="isLoggedIn"><a [routerLink]="['/profile']">Profile</a></li>
     <li *ngIf="isLoggedIn"><a [routerLink]="['/users']">Users</a></li>
 </ul>
 <div *ngIf="isLoggedIn">
-    <span *ngIf="auth">Welcome {{ auth.user.name }} </span>
+    <span>Welcome {{ userName }} </span>
+    <select (change)="onTypeChange($event)" *ngIf="types.length">
+        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+    </select>&nbsp;
     <button type="button" (click)="onLogoutClick($event)">Logout</button>
 </div>
 <hr>

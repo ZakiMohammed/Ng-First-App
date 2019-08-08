@@ -51,9 +51,11 @@ export class LoginComponent implements OnInit {
       this.userService.getUsers().subscribe(users => {
         let user = users.find(i => i.email === email && i.username === userName);
         if (user) {
+          let types = new ProductData().getProductTypes();
           this.authService.setData({
             user: user,
-            types: new ProductData().getProductTypes()
+            types: types,
+            type: types.length ? types[0] : null
           });          
           // this.route.navigateByUrl('/home');
           window.location = 'home';

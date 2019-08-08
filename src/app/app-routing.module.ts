@@ -17,6 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PostPageComponent } from './components/post-page/post-page.component';
 import { ClientListComponent } from './components/client-list/client-list.component';
 import { UserViewComponent } from './components/user-view/user-view.component';
+import { ProductTypeComponent } from './components/product-type/product-type.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,8 +26,9 @@ const routes: Routes = [
   { path: 'clients', component: ClientListComponent },
   { path: 'posts', component: PostPageComponent },
   { path: 'posts/:id', component: PostViewComponent },
-  { path: 'product', component: ProductListComponent },
-  { path: 'product/:id', component: ProductViewComponent },
+  { path: 'products/type', component: ProductTypeComponent, canActivate: [AuthGuard] },
+  { path: 'products', component: ProductListComponent, canActivate: [AuthGuard] },
+  { path: 'products/:id', component: ProductViewComponent, canActivate: [AuthGuard] },  
   { path: 'users', component: UserViewComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },

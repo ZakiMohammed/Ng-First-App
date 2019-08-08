@@ -1,0 +1,27 @@
+<h4>Product Types</h4>
+
+<div>
+    <button type="button" (click)="action = 'v'">List</button>
+    <button type="button" (click)="action = 'a'">Add</button>
+</div>
+
+<br>
+
+<div [ngSwitch]="action">
+    <div *ngSwitchCase="'a'">
+        <form novalidate [formGroup]="frm" (ngSubmit)="onSubmit($event)">
+
+            <input type="text" formControlName="name" placeholder="Enter type name">
+            <button type="submit" [disabled]="!frm.valid">Add</button>            
+
+        </form>
+    </div>
+    <div *ngSwitchDefault>
+        <ol>
+            <li *ngFor="let item of list; let i = index;">
+                {{ item.name }}
+                <button type="button" (click)="onRemoveClick($event, item, i)">x</button>
+            </li>
+        </ol>
+    </div>
+</div>

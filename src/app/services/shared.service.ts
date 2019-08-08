@@ -9,7 +9,7 @@ import { ProductType } from '../models/product';
 export class SharedService {
 
   private name: BehaviorSubject<string> = new BehaviorSubject(null);
-  private productType: BehaviorSubject<string> = new BehaviorSubject(null);
+  private productType: BehaviorSubject<ProductType> = new BehaviorSubject(null);
   private productTypes: BehaviorSubject<ProductType[]> = new BehaviorSubject(null);
 
   constructor(private authService: AuthService) {
@@ -17,7 +17,7 @@ export class SharedService {
     
     if (auth) {
       this.name = new BehaviorSubject(auth.user.name);
-      this.productType = new BehaviorSubject(auth.types[0].name);
+      this.productType = new BehaviorSubject(auth.type);
       this.productTypes = new BehaviorSubject(auth.types);
     }
   }
@@ -29,11 +29,11 @@ export class SharedService {
     this.name.next(value);
   }
 
-  getProductType(): Observable<string> {
+  getProductType(): Observable<ProductType> {
     return this.productType.asObservable();
   }
-  setProductType(value: string) {
-    this.name.next(value);
+  setProductType(value: ProductType) {
+    this.productType.next(value);
   }
 
   getProductTypes(): Observable<ProductType[]> {

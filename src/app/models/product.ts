@@ -153,6 +153,9 @@ export class ProductData {
     getProductTypes() : ProductType[] {
         return this.productTypes;
     }
+    getProductType(id: number) : ProductType {
+        return this.productTypes.find(i => i.id === id);
+    }
     getProducts() : Product[] {
         return this.products;
     }
