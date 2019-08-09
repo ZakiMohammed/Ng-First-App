@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: boolean = false;
   userName: string = '';
   types: ProductType[] = [];
+  type: ProductType = null;
 
   constructor(
     private authService: AuthService,
@@ -27,10 +28,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.types = this.authService.getData().types;
+    this.type = this.authService.getData().type;
     this.userName = this.authService.getData().user.username;
 
-    this.sharedService.getProductTypes().subscribe(types => {
-      this.types = types;
+    this.sharedService.getAuth().subscribe(auth => {
+      this.types = auth.types;
+      this.type = auth.type;
     });
   }
 
@@ -42,11 +45,11 @@ export class HeaderComponent implements OnInit {
 
   onTypeChange($event: any) {
     let type = this.types.find(i => i.id === +$event.target.value);
-
     let auth = this.authService.getData();
+
     auth.type = type;
-    this.authService.setData(auth);
-    this.sharedService.setProductType(auth.type);    
+    
+    this.sharedService.setAuth(auth);    
   }
 
 }

@@ -34,9 +34,9 @@ export class ProductListComponent implements OnInit {
     private sharedService: SharedService,
     private productService: ProductService) {
     this.productData = new ProductData();
-    sharedService.getProductType().subscribe(type => {      
-      if (type) {
-        this.products = this.productData.getProducts().filter(i => i.typeId === +type.id);
+    sharedService.getAuth().subscribe(auth => {      
+      if (auth.type) {
+        this.products = this.productData.getProducts().filter(i => i.typeId === +auth.type.id);
       } else {
         this.products = [];
       }

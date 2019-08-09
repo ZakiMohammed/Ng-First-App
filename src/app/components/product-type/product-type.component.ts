@@ -32,8 +32,8 @@ export class ProductTypeComponent implements OnInit {
 
     this.list = this.authService.getData().types;
 
-    this.sharedService.getProductTypes().subscribe(types => {
-      this.list = types;
+    this.sharedService.getAuth().subscribe(auth => {
+      this.list = auth.types;
     });
   }
 
@@ -47,12 +47,10 @@ export class ProductTypeComponent implements OnInit {
       auth.types.push(newType);
 
       if (auth.types.length == 0) {
-        auth.type = newType;
-        this.sharedService.setProductType(auth.type);
+        auth.type = newType;        
       }
-
-      this.authService.setData(auth);
-      this.sharedService.setProductTypes(auth.types);
+      
+      this.sharedService.setAuth(auth);
 
       this.action = 'v';
 
@@ -64,15 +62,11 @@ export class ProductTypeComponent implements OnInit {
     let auth = this.authService.getData();
     if (auth.types.length > 1) {
       auth.types.splice(index, 1);
-      this.authService.setData(auth);
-      this.sharedService.setProductTypes(auth.types);
     } else {
       auth.types.splice(index, 1);
       auth.type = null;
-      this.authService.setData(auth);
-      this.sharedService.setProductType(auth.type);
-      this.sharedService.setProductTypes(auth.types);
     }
+    this.sharedService.setAuth(auth);
   }
 
 }

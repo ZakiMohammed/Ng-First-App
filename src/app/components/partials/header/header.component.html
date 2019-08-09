@@ -14,7 +14,7 @@
 <div *ngIf="isLoggedIn">
     <span>Welcome {{ userName }} </span>
     <select (change)="onTypeChange($event)" *ngIf="types.length">
-        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+        <option *ngFor="let t of types" [value]="t.id" [selected]="t.id === type.id">{{ t.name }}</option>
     </select>&nbsp;
     <button type="button" (click)="onLogoutClick($event)">Logout</button>
 </div>
